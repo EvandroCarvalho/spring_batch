@@ -2,12 +2,12 @@ package com.spring.batch.listener;
 
 import org.springframework.batch.core.ItemReadListener;
 import org.springframework.stereotype.Component;
-import com.spring.batch.Model.Cep;
+import com.spring.batch.Model.CepResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class ListenerService implements ItemReadListener<Cep>{
+public class ListenerService implements ItemReadListener<CepResponse>{
 
   @Override
   public void beforeRead() {
@@ -16,7 +16,7 @@ public class ListenerService implements ItemReadListener<Cep>{
   }
 
   @Override
-  public void afterRead(Cep item) {
+  public void afterRead(CepResponse item) {
     
   }
 

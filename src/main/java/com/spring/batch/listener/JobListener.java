@@ -11,7 +11,7 @@ public class JobListener implements JobExecutionListener {
 
   @Override
   public void beforeJob(JobExecution jobExecution) {
-    log.info("####Executando o job");
+    log.info("####Executando o job " + jobExecution.getJobId());
 
   }
 

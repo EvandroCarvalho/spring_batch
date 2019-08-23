@@ -13,7 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cep {
+public class CepResponse {
   @EqualsAndHashCode.Include
   private String cep;
   private String logradouro;

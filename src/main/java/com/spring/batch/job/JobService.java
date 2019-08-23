@@ -1,4 +1,4 @@
-package com.spring.batch;
+package com.spring.batch.job;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;

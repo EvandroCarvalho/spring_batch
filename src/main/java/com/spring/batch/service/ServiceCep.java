@@ -3,15 +3,12 @@ package com.spring.batch.service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.jboss.logging.Logger;
-import org.springframework.batch.core.configuration.annotation.StepScope;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import com.spring.batch.Model.Cep;
+import com.spring.batch.Model.CepResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,22 +21,21 @@ public class ServiceCep {
   private final RestTemplate restTemplate;
   private List<String> ceps = Arrays.asList("38400322", "38425381");
 
-
-  public List<Cep> getCepDetails() {
+  public List<CepResponse> getCepDetails() {
     log.info("##Chamando serviço");
     return ceps.stream().map(cep -> CallViaCepService(cep)).collect(Collectors.toList());
   }
 
-  private Cep CallViaCepService(String cep) {
-    Cep cepModel = null;
+  private CepResponse CallViaCepService(String cep) {
+    CepResponse cepResponseModel = null;
     try {
-    ResponseEntity<Cep> response = restTemplate.getForEntity(urlService, Cep.class, cep);
-    cepModel = response.getBody();
+    ResponseEntity<CepResponse> response = restTemplate.getForEntity(urlService, CepResponse.class, cep);
+    cepResponseModel = response.getBody();
     log.info("###Sucesso na consulta");
     } catch (Exception e) {
       log.info("###Houve um erro na consulta: \n" + e.getMessage());
     }
-    return cepModel;
+    return cepResponseModel;
   }
 
 }
