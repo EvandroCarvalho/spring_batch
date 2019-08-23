@@ -17,18 +17,17 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 		
 		@Autowired
 		private final JdbcTemplate jdbcTemplate;
-		
 		@Override
-			public void afterJob(JobExecution jobExecution) {
-				if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
-					log.info("!! JOB FINISHED! Time to verify the results");
-					
-					jdbcTemplate.query("SELECT first_name, last_name FROM people",
-							(rs,row) -> new Person(
-									rs.getString(1),
-									rs.getString(2))
-							).forEach(person -> log.info("Found <" + person + "> in the database."));
-				}
+		public void afterJob(JobExecution jobExecution) {
+			if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
+				log.info("!! JOB FINISHED! Time to verify the results");
+				
+				jdbcTemplate.query("SELECT first_name, last_name FROM people",
+						(rs,row) -> new Person(
+								rs.getString(1),
+								rs.getString(2))
+						).forEach(person -> log.info("Found <" + person + "> in the database."));
 			}
+		}
 		
 }
